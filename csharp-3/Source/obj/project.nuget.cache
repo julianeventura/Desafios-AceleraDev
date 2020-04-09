@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "rh4dTp38xWPf9Y3IBMRmSmVYYK9GZy8a4pe56CxtyHnrXNnKfwG/lDs1XYMaC43Zd+T3xalzcX7nBT8bn5du+Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\julia\\codenation\\csharp-3\\Source\\Source.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\julia\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\julia\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

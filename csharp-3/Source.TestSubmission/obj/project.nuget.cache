@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "B5AkgyJm+1yKf/T0wDD6I3EvWYFUtLYe8LH9uQv5IVd4TW7MIo/hKi1ZrZJKUoObcHHQ85itNqVDi86jk9WzTA==",
+  "dgSpecHash": "NHVCilmVdDgfBENQfMiDkDe9yLwfg+UosQ8XZiHWx934h0yKD4cjDgXeSmamzPHyctzG7vjcHkG2/J2iDXaebQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\julia\\codenation\\csharp-3\\Source.Test\\Source.Test.csproj",
+  "projectFilePath": "C:\\Users\\julia\\codenation\\csharp-3\\Source.TestSubmission\\Source.TestSubmission.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\julia\\.nuget\\packages\\junittestlogger\\1.1.0\\junittestlogger.1.1.0.nupkg.sha512",
     "C:\\Users\\julia\\.nuget\\packages\\microsoft.codecoverage\\16.0.1\\microsoft.codecoverage.16.0.1.nupkg.sha512",

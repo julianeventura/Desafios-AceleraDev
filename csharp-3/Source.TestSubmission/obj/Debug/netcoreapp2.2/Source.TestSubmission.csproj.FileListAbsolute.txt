@@ -10,8 +10,10 @@ C:\Users\julia\codenation\csharp-3\Source.TestSubmission\bin\Debug\netcoreapp2.2
 C:\Users\julia\codenation\csharp-3\Source.TestSubmission\bin\Debug\netcoreapp2.2\Source.dll
 C:\Users\julia\codenation\csharp-3\Source.TestSubmission\bin\Debug\netcoreapp2.2\Source.pdb
 C:\Users\julia\codenation\csharp-3\Source.TestSubmission\obj\Debug\netcoreapp2.2\Source.TestSubmission.csprojAssemblyReference.cache
+C:\Users\julia\codenation\csharp-3\Source.TestSubmission\obj\Debug\netcoreapp2.2\Source.TestSubmission.csproj.CoreCompileInputs.cache
 C:\Users\julia\codenation\csharp-3\Source.TestSubmission\obj\Debug\netcoreapp2.2\Source.TestSubmission.AssemblyInfoInputs.cache
 C:\Users\julia\codenation\csharp-3\Source.TestSubmission\obj\Debug\netcoreapp2.2\Source.TestSubmission.AssemblyInfo.cs
 C:\Users\julia\codenation\csharp-3\Source.TestSubmission\obj\Debug\netcoreapp2.2\Source.TestSubmission.csproj.CopyComplete
 C:\Users\julia\codenation\csharp-3\Source.TestSubmission\obj\Debug\netcoreapp2.2\Source.TestSubmission.dll
 C:\Users\julia\codenation\csharp-3\Source.TestSubmission\obj\Debug\netcoreapp2.2\Source.TestSubmission.pdb
+C:\Users\julia\codenation\csharp-3\Source.TestSubmission\obj\Debug\netcoreapp2.2\Source.TestSubmission.genruntimeconfig.cache

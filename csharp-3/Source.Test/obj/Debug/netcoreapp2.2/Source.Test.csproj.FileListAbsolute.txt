@@ -1,3 +1,7 @@
+C:\Users\julia\codenation\csharp-3\Source.Test\obj\Debug\netcoreapp2.2\Source.Test.csprojAssemblyReference.cache
+C:\Users\julia\codenation\csharp-3\Source.Test\obj\Debug\netcoreapp2.2\Source.Test.csproj.CoreCompileInputs.cache
+C:\Users\julia\codenation\csharp-3\Source.Test\obj\Debug\netcoreapp2.2\Source.Test.AssemblyInfoInputs.cache
+C:\Users\julia\codenation\csharp-3\Source.Test\obj\Debug\netcoreapp2.2\Source.Test.AssemblyInfo.cs
 C:\Users\julia\codenation\csharp-3\Source.Test\bin\Debug\netcoreapp2.2\JUnit.TestLogger.dll
 C:\Users\julia\codenation\csharp-3\Source.Test\bin\Debug\netcoreapp2.2\xunit.runner.visualstudio.dotnetcore.testadapter.dll
 C:\Users\julia\codenation\csharp-3\Source.Test\bin\Debug\netcoreapp2.2\xunit.runner.reporters.netcoreapp10.dll
@@ -9,9 +13,6 @@ C:\Users\julia\codenation\csharp-3\Source.Test\bin\Debug\netcoreapp2.2\Source.Te
 C:\Users\julia\codenation\csharp-3\Source.Test\bin\Debug\netcoreapp2.2\Source.Test.pdb
 C:\Users\julia\codenation\csharp-3\Source.Test\bin\Debug\netcoreapp2.2\Source.dll
 C:\Users\julia\codenation\csharp-3\Source.Test\bin\Debug\netcoreapp2.2\Source.pdb
-C:\Users\julia\codenation\csharp-3\Source.Test\obj\Debug\netcoreapp2.2\Source.Test.csprojAssemblyReference.cache
-C:\Users\julia\codenation\csharp-3\Source.Test\obj\Debug\netcoreapp2.2\Source.Test.AssemblyInfoInputs.cache
-C:\Users\julia\codenation\csharp-3\Source.Test\obj\Debug\netcoreapp2.2\Source.Test.AssemblyInfo.cs
 C:\Users\julia\codenation\csharp-3\Source.Test\obj\Debug\netcoreapp2.2\Source.Test.csproj.CopyComplete
 C:\Users\julia\codenation\csharp-3\Source.Test\obj\Debug\netcoreapp2.2\Source.Test.dll
 C:\Users\julia\codenation\csharp-3\Source.Test\obj\Debug\netcoreapp2.2\Source.Test.pdb
