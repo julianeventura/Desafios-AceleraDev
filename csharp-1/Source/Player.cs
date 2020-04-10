@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Codenation.Challenge.Exceptions;
 
 namespace Codenation.Challenge
 {
-    class Jogador
+    public class Player
     {
         public long Id { get; set; }
         public long TeamId { get; set; }
@@ -13,6 +10,5 @@ namespace Codenation.Challenge
         public DateTime BirthDate { get; set; }
         public int SkillLevel { get; set; }
         public decimal Salary { get; set; }
-        public bool Capitao { get; set; }
     }
 }

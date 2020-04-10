@@ -7,225 +7,210 @@ namespace Codenation.Challenge
 {
     public class SoccerTeamsManager : IManageSoccerTeams
     {
-        List<Time> Teams = new List<Time>();
-        List<Jogador> Players = new List<Jogador>();
+        private Dictionary<long, Team> teams;
+        private Dictionary<long, Player> players;
 
         public SoccerTeamsManager()
-        {    
-
+        {
+            teams = new Dictionary<long, Team>();
+            players = new Dictionary<long, Player>();
         }
 
         public void AddTeam(long id, string name, DateTime createDate, string mainShirtColor, string secondaryShirtColor)
         {
-            Time team = new Time();
-            team.Id = id;
-            team.Name = name;
-            team.DataCriacao = createDate;
-            team.CorUniformePrincipal = mainShirtColor;
-            team.CorUniformeSecundario = secondaryShirtColor;
+            if (teams.ContainsKey(id))
+            {
+                throw new UniqueIdentifierException();
+            }
 
-            if (Teams.Any(t => t.Id == team.Id))
+            var team = new Team()
             {
-                throw new Codenation.Challenge.Exceptions.UniqueIdentifierException();
-            }
-            else
-            {
-                Teams.Add(team);
-            }
+                Id = id,
+                Name = name,
+                CreateDate = createDate,
+                MainShirtColor = mainShirtColor,
+                SecondaryShirtColor = secondaryShirtColor
+            };
+
+            teams.Add(id, team);
         }
 
         public void AddPlayer(long id, long teamId, string name, DateTime birthDate, int skillLevel, decimal salary)
         {
-            Jogador player = new Jogador();
-            Time team = new Time();
-
-            player.Id = id;
-            player.TeamId = teamId;
-            player.Name = name;
-            player.BirthDate = birthDate;
-            player.SkillLevel = skillLevel;
-            player.Salary = salary;
-
-            if(!Players.Contains(player))
+            if (players.ContainsKey(id))
             {
-                Players.Add(player);
-            }
-            else
-            {
-                throw new Codenation.Challenge.Exceptions.UniqueIdentifierException();
+                throw new UniqueIdentifierException();
             }
 
-            if(Teams.Contains(team))
+            Team team = GetTeam(teamId);
+
+            var player = new Player()
             {
-                throw new Codenation.Challenge.Exceptions.TeamNotFoundException();
+                Id = id,
+                TeamId = teamId,
+                Name = name,
+                BirthDate = birthDate,
+                SkillLevel = skillLevel,
+                Salary = salary
+            };
+
+            players.Add(id, player);
+        }
+
+        private Player GetPlayer(long playerId)
+        {
+            Player player;
+
+            if(!players.TryGetValue(playerId, out player))
+            {
+                throw new PlayerNotFoundException();
             }
 
+            return player;
+        }
+
+        private Team GetTeam(long teamId)
+        {
+            Team team;
+
+            if (!teams.TryGetValue(teamId, out team))
+            {
+                throw new TeamNotFoundException();
+            }
+
+            return team;
         }
 
         public void SetCaptain(long playerId)
         {
-            var jogador = Players.Find(p => p.Id == playerId);
-            if (jogador == null)
-            {
-                throw new Codenation.Challenge.Exceptions.PlayerNotFoundException();
-            }
-            var jogadorCapitao = Players.Find(t => t.Id == playerId);
-            jogadorCapitao.Capitao = jogadorCapitao.Id == playerId;
+            Player player = GetPlayer(playerId);
+
+            teams[player.TeamId].CaptainId = playerId;
         }
 
         public long GetTeamCaptain(long teamId)
         {
-            var time = Teams.Find(t => t.Id == teamId);
-            if (time == null)
+            Team team = GetTeam(teamId);
+
+            if(!team.CaptainId.HasValue)
             {
-                throw new Codenation.Challenge.Exceptions.TeamNotFoundException();
+                throw new CaptainNotFoundException();
             }
 
-            foreach (Jogador player in Players)
-            {
-                if (player.Capitao)
-                {
-                    return player.Id;
-                }
-            }
-
-            throw new Codenation.Challenge.Exceptions.CaptainNotFoundException();
+            return team.CaptainId.Value;
         }
 
         public string GetPlayerName(long playerId)
         {
-            foreach (Jogador jogador in Players)
-            {
-                if (jogador.Id == playerId)
-                {
-                    return jogador.Name;
-                }
-            }
+            Player player = GetPlayer(playerId);
 
-            throw new Codenation.Challenge.Exceptions.PlayerNotFoundException();
+            return player.Name;
         }
 
         public string GetTeamName(long teamId)
         {
-            foreach (Time time in Teams)
-            {
-                if (time.Id == teamId)
-                {
-                    return time.Name;
-                }
-            }
+            Team team = GetTeam(teamId);
 
-            throw new Codenation.Challenge.Exceptions.TeamNotFoundException();
+            return team.Name; 
         }
 
         public List<long> GetTeamPlayers(long teamId)
         {
-            var time = Teams.Find(t => t.Id == teamId);
-            if (time == null)
-            {
-                throw new Codenation.Challenge.Exceptions.TeamNotFoundException();
-            }
+            Team team = GetTeam(teamId);
 
-            List<long> ListaId = Players.OrderBy(p => p.Id).Select(p => p.Id).ToList();
-
-            return ListaId;
+            return players.Values
+                .Where(x => x.TeamId == teamId)
+                .Select(x => x.Id)
+                .OrderBy(x => x)
+                .ToList();
         }
 
         public long GetBestTeamPlayer(long teamId)
         {
-            var time = Teams.Find(t => t.Id == teamId);
-            if(time == null)
-            {
-                throw new Codenation.Challenge.Exceptions.TeamNotFoundException();
-            }
+            Team team = GetTeam(teamId);
 
-            return Players.OrderByDescending(p => p.SkillLevel).ThenBy(p => p.Id).First().Id;
+            return players.Values
+                .Where(x => x.TeamId == teamId)
+                .OrderByDescending(x => x.SkillLevel)
+                .ThenBy(y => y.Id)
+                .First()
+                .Id;
         }
 
         public long GetOlderTeamPlayer(long teamId)
         {
-            var jogadorVelho = Players.Find(jv => jv.TeamId == teamId);
-            
-            if(jogadorVelho == null)
-            {
-                throw new Codenation.Challenge.Exceptions.TeamNotFoundException();
-            }
+            Team team = GetTeam(teamId);
 
-            return Players.OrderBy(jv => jv.BirthDate).Select(jv => jv.Id).First();
+            return players.Values
+                .Where(x => x.TeamId == teamId)
+                .OrderBy(x => x.BirthDate)
+                .ThenBy(y => y.Id)
+                .First()
+                .Id;
         }
 
         public List<long> GetTeams()
         {
-            List<long> ListaId = Teams.OrderBy(t => t.Id).Select(p => p.Id).ToList();
-            
-            if (ListaId == null)
+            List<long> Teams = teams.Values
+                .OrderBy(x => x.Id)
+                .Select(y => y.Id)
+                .ToList();
+
+            if (Teams == null)
             {
-                return ListaId = null;
+                return null;
             }
 
-            return ListaId;
+            return Teams; 
         }
 
         public long GetHigherSalaryPlayer(long teamId)
         {
-            var salarioJogador = Players.Find(sj => sj.TeamId == teamId);
+            Team team = GetTeam(teamId);
 
-            if (salarioJogador == null)
-            {
-                throw new Codenation.Challenge.Exceptions.TeamNotFoundException();
-            }
-
-            return Players.OrderByDescending(sj => sj.Salary).ThenBy(sj => sj.Id)
-                .Select(jv => jv.Id).First();
+            return players.Values
+                .OrderByDescending(x => x.Salary)
+                .ThenBy(y => y.Id)
+                .First()
+                .Id;
         }
 
         public decimal GetPlayerSalary(long playerId)
         {
-            foreach (Jogador jogador in Players)
-            {
-                if (jogador.Id == playerId)
-                {
-                    return jogador.Salary;
-                }
-            }
+            Player player = GetPlayer(playerId);
 
-            throw new Codenation.Challenge.Exceptions.PlayerNotFoundException();
+            return player.Salary;
         }
 
         public List<long> GetTopPlayers(int top)
         {
-            List<long> ListaTop = Players.OrderByDescending(j => j.SkillLevel)
-                .ThenBy(j => j.Id).Take(top).Select(j => j.Id).ToList();
+            List<long> TopPlayers = players.Values
+                .OrderByDescending(x => x.SkillLevel)
+                .ThenBy(z => z.Id)
+                .Select(y => y.Id)
+                .Take(top)
+                .ToList();
 
-            if(ListaTop == null)
+            if (TopPlayers == null)
             {
-                return ListaTop = null;
+                return null;
             }
-            return ListaTop;
 
+            return TopPlayers; 
         }
 
         public string GetVisitorShirtColor(long teamId, long visitorTeamId)
         {
-            var timeCasa = Teams.Find(t => t.Id == teamId);
-            if (timeCasa == null)
-            {
-                throw new Codenation.Challenge.Exceptions.TeamNotFoundException();
-            }
+            Team team = GetTeam(teamId);
+            Team teamVisitor = GetTeam(visitorTeamId);
 
-            var visitaCasa = Teams.Find(t => t.Id == visitorTeamId);
-            if (visitaCasa == null)
+            if (team.MainShirtColor == teamVisitor.MainShirtColor)
             {
-                throw new Codenation.Challenge.Exceptions.TeamNotFoundException();
-            }   
-
-            if (timeCasa.CorUniformePrincipal == visitaCasa.CorUniformePrincipal)
-            {
-                return visitaCasa.CorUniformeSecundario;
+                return teamVisitor.SecondaryShirtColor;
             }
             else
             {
-                return visitaCasa.CorUniformePrincipal;
+                return teamVisitor.MainShirtColor;
             }
         }
 
