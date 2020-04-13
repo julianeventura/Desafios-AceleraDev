@@ -15,3 +15,5 @@ C:\Users\julia\codenation\csharp-2\Source.TestSubmission\obj\Debug\netcoreapp2.2
 C:\Users\julia\codenation\csharp-2\Source.TestSubmission\obj\Debug\netcoreapp2.2\Source.TestSubmission.csproj.CopyComplete
 C:\Users\julia\codenation\csharp-2\Source.TestSubmission\obj\Debug\netcoreapp2.2\Source.TestSubmission.dll
 C:\Users\julia\codenation\csharp-2\Source.TestSubmission\obj\Debug\netcoreapp2.2\Source.TestSubmission.pdb
+C:\Users\julia\codenation\csharp-2\Source.TestSubmission\obj\Debug\netcoreapp2.2\Source.TestSubmission.csproj.CoreCompileInputs.cache
+C:\Users\julia\codenation\csharp-2\Source.TestSubmission\obj\Debug\netcoreapp2.2\Source.TestSubmission.genruntimeconfig.cache
